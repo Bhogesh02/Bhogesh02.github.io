@@ -19,11 +19,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "export": "next export",
-    "start": "next start"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "export": "next export"
+},
   "eslintConfig": {
     "extends": [
       "react-app",
