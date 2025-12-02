@@ -29,11 +29,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Next.js
+      - name: Build Next.js (auto static export)
         run: npm run build
-
-      - name: Export static site
-        run: npm run export
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
