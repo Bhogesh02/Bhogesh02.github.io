@@ -1,5 +1,3 @@
-
-
 import { personalData } from "../utils/data/personal-data";
 import profileImage from "../Images/Bhogesh02.webp";
 
@@ -26,7 +24,8 @@ function AboutSection() {
             src={typeof profileImage === 'string' ? profileImage : (profileImage && profileImage.src) || ''}
             width={320}
             height={280}
-            alt="bhogesh"
+            alt="Bhogesh - Web Developer"
+            loading="lazy"
             className="rounded-lg p-3 border-2 border-transparent shadow-lg"
           />
         </div>

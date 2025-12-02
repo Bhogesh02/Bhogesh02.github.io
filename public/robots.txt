@@ -1,3 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Sitemap: https://bhogesh02.github.io/Mr_Bhogesh_Portfolio/sitemap.xml
