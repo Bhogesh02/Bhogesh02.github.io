@@ -114,19 +114,19 @@ const ProfileCard = ({ name, profession, role, social = {}, onClose }) => {
       aria-modal="true"
       onClick={onBackdropClick}
     >
-          <div className="relative w-[480px] max-w-full">
+          <div className="relative w-full max-w-md sm:max-w-lg mx-4 sm:mx-auto">
         <div
           ref={cardRef}
           id="profile-atm-card"
-          className="bg-gradient-to-br from-neutral-900 via-indigo-900 to-[#7c3aed] rounded-[12px] p-6 flex flex-col items-center shadow-[0_10px_24px_rgba(2,6,23,0.35)] relative"
-          style={{ transform: 'perspective(900px) rotateX(1.5deg)', width: 480 }}
+          className="bg-gradient-to-br from-neutral-900 via-indigo-900 to-[#7c3aed] rounded-[12px] p-4 sm:p-6 flex flex-col items-center shadow-[0_10px_24px_rgba(2,6,23,0.35)] relative max-h-[90vh] overflow-y-auto"
+          style={{ transform: 'perspective(900px) rotateX(1.5deg)' }}
         >
             {/* Top-right controls removed per user request (3D removed). Share + Download moved to bottom-center. */}
           <div className="w-full flex justify-center mt-1 mb-6">
-            {/* Rectangle image with gradient border */}
+            {/* Rectangle image with gradient border (responsive) */}
             <div className="transform translate-y-2" style={{ borderRadius: 12 }}>
               <div style={{ padding: 2, borderRadius: 12, background: 'linear-gradient(90deg,#7c3aed 0%,#4f46e5 100%)' }}>
-                <div style={{ borderRadius: 12, overflow: 'hidden', background: '#071026', width: 194, height: 243, border: '2px solid rgba(255,255,255,0.12)', boxShadow: '0 8px 26px rgba(124,58,237,0.10)' }}>
+                <div className="overflow-hidden bg-[#071026] rounded-[12px] border-2 border-white/12 shadow-[0_8px_26px_rgba(124,58,237,0.10)] w-40 h-56 sm:w-48 sm:h-64 md:w-52 md:h-72">
                   <img
                     src="/Bhogesh02.webp"
                     alt={name || "Profile"}
@@ -139,10 +139,10 @@ const ProfileCard = ({ name, profession, role, social = {}, onClose }) => {
             </div>
           </div>
 
-          <div className="text-white font-extrabold text-3xl mt-2">Mr _ {name}</div>
-          <div className="text-white text-base mb-4 opacity-90 font-semibold">{profession || role}</div>
+          <div className="text-white font-extrabold text-2xl sm:text-3xl md:text-4xl mt-2 text-center">Mr _ {name}</div>
+          <div className="text-white text-sm sm:text-base mb-4 opacity-90 font-semibold text-center">{profession || role}</div>
 
-          <div className="flex mb-2 items-center" style={{ gap: 20 }}>
+          <div className="flex mb-2 items-center flex-wrap justify-center" style={{ gap: 16 }}>
             <a href={(social && social.instagram) || 'https://www.instagram.com/tamminana_bhogesh/'} target="_blank" rel="noopener noreferrer"><FaInstagram className="text-white text-xl rounded-[12px]" /></a>
             {social.facebook && <a href={social.facebook} target="_blank" rel="noopener noreferrer"><FaFacebook className="text-white text-xl rounded-[12px]" /></a>}
             {social.twitter && <a href={social.twitter} target="_blank" rel="noopener noreferrer"><FaTwitter className="text-white text-xl rounded-[12px]" /></a>}
@@ -189,7 +189,7 @@ const ProfileCard = ({ name, profession, role, social = {}, onClose }) => {
           
         </div>
         {/* Controls placed at the very end of the card container (outside `#profile-atm-card`) */}
-        <div className="w-full flex justify-center mt-4 mb-4 relative" data-export-ignore>
+        <div className="w-full flex flex-col sm:flex-row items-center justify-center mt-4 mb-4 relative gap-3" data-export-ignore>
           {showShareMenu && (
             <div style={{ position: 'absolute', bottom: 68, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 12, zIndex: 9999 }}>
               {menuItems.map((item) => {
@@ -205,14 +205,14 @@ const ProfileCard = ({ name, profession, role, social = {}, onClose }) => {
             </div>
           )}
 
-          <div className="flex gap-3">
-            <button onClick={(e) => { e.stopPropagation(); setShowShareMenu(s => !s); }} className="bg-white/10 hover:bg-white/20 text-white rounded-md px-4 py-2 flex items-center gap-2">
+          <div className="flex gap-3 flex-wrap justify-center">
+            <button onClick={(e) => { e.stopPropagation(); setShowShareMenu(s => !s); }} className="bg-white/10 hover:bg-white/20 text-white rounded-md px-4 py-2 flex items-center gap-2 w-full sm:w-auto justify-center">
               <FaShareAlt className="w-5 h-5" />
               <span>Share</span>
             </button>
 
             <div className="relative">
-              <button onClick={(e) => { e.stopPropagation(); setShowDownloadMenu(s => !s); }} className="bg-white/10 hover:bg-white/20 text-white rounded-md px-4 py-2 flex items-center gap-2">
+              <button onClick={(e) => { e.stopPropagation(); setShowDownloadMenu(s => !s); }} className="bg-white/10 hover:bg-white/20 text-white rounded-md px-4 py-2 flex items-center gap-2 w-full sm:w-auto justify-center">
                 {downloading ? (
                   <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" opacity="0.2"/><path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
                 ) : (

@@ -3,6 +3,133 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile Card — Tamminana Bhogesh</title>
+  <meta name="description" content="Tamminana Bhogesh — Clickable digital profile card with contact links and social profiles." />
+  <meta property="og:title" content="Tamminana Bhogesh — Profile Card" />
+  <meta property="og:description" content="Clickable digital profile card with contact links and social profiles." />
+  <meta property="og:image" content="/Bhogesh02.webp" />
+  <link rel="canonical" href="/card/" />
+  <style>
+    :root{--bg:#020317;--card:#07102b;--muted:#9aa3b2;--accent1:#7c3aed;--accent2:#4f46e5}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%,#06102b 100%);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
+    .card{width:100%;max-width:520px;background:linear-gradient(180deg,#061028 0%,#0b1632 100%);border-radius:14px;padding:20px 20px;box-shadow:0 16px 48px rgba(2,6,23,0.65);color:#fff}
+    .top{display:flex;flex-direction:row;gap:18px;align-items:center}
+    .photo-wrap{padding:4px;border-radius:12px;background:linear-gradient(90deg,var(--accent1),var(--accent2));}
+    .photo{background:#071026;border-radius:10px;overflow:hidden;border:2px solid rgba(255,255,255,0.08);box-shadow:0 10px 30px rgba(124,58,237,0.08);width:142px;height:176px;display:block}
+    .photo img{width:100%;height:100%;object-fit:contain;display:block}
+    .meta{flex:1;min-width:0}
+    .name{font-weight:800;font-size:20px;margin:0 0 6px}
+    .role{font-weight:600;color:var(--muted);margin:0 0 10px}
+    .socials{display:flex;gap:10px;flex-wrap:wrap}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;padding:8px;border-radius:10px;background:rgba(255,255,255,0.03);color:#fff;text-decoration:none;font-weight:600}
+    .divider{height:1px;background:rgba(255,255,255,0.04);margin:14px 0;border-radius:2px}
+    .contacts{display:grid;grid-template-columns:1fr;gap:8px;font-size:14px;color:#e6eef6}
+    .contact-row{display:flex;gap:10px;align-items:center}
+    .contact-row strong{width:70px;color:var(--muted);font-weight:600}
+    .footer{margin-top:10px;text-align:right;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:520px){
+      .card{padding:16px}
+      .top{flex-direction:column;align-items:center}
+      .photo{width:128px;height:156px}
+      .name{font-size:18px;text-align:center}
+      .role{text-align:center}
+      .meta{width:100%}
+      .contact-row strong{width:62px}
+      .socials{justify-content:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <article class="card" id="card-root" aria-label="Profile card">
+      <div class="top">
+        <div class="photo-wrap">
+          <div class="photo"><img id="card-photo" src="/Bhogesh02.webp" alt="Profile"/></div>
+        </div>
+
+        <div class="meta">
+          <h1 id="card-name" class="name">Loading…</h1>
+          <div id="card-role" class="role">Loading role…</div>
+          <div id="card-socials" class="socials" aria-label="Social links"></div>
+        </div>
+      </div>
+
+      <div class="divider" role="separator"></div>
+
+      <section class="contacts" aria-label="Contact information">
+        <div class="contact-row"><strong>Email</strong><span id="card-email">—</span></div>
+        <div class="contact-row"><strong>Phone</strong><span id="card-phone">—</span></div>
+        <div class="contact-row"><strong>Location</strong><span id="card-address">—</span></div>
+      </section>
+
+      <div class="footer">ID: <span id="card-id">—</span></div>
+    </article>
+  </div>
+
+  <script>
+    // Support ?id=slug, fall back to embedded defaults if data.json isn't present.
+    function getQueryId(){ const p = new URLSearchParams(window.location.search); return p.get('id') || 'mr_tamminana_bhogesh'; }
+
+    const EMBED = {
+      "mr_tamminana_bhogesh": {
+        name: 'Mr _ Tamminana Bhogesh',
+        fullName: 'Mr Tamminana Bhogesh',
+        role: 'Full Stack Developer',
+        image: '/Bhogesh02.webp',
+        instagram: 'https://www.instagram.com/tamminana_bhogesh/',
+        github: 'https://github.com/Bhogesh02',
+        linkedin: 'https://www.linkedin.com/in/tamminanabhogesh/',
+        portfolio: '/',
+        email: 'tamminanabhogesh@gmail.com',
+        phone: '+91 9704635156',
+        address: 'Hyderabad',
+        id: 'mr_tamminana_bhogesh'
+      }
+    };
+
+    async function render(){
+      const id = getQueryId();
+      let card = EMBED[id];
+      try {
+        const res = await fetch('/card/data.json', { cache: 'no-cache' });
+        if (res.ok) {
+          const json = await res.json();
+          card = json[id] || card;
+        }
+      } catch (e) {
+        // data.json optional — fallback to EMBED
+        card = card || EMBED['mr_tamminana_bhogesh'];
+      }
+
+      document.getElementById('card-photo').src = card.image || '/Bhogesh02.webp';
+      document.getElementById('card-photo').alt = card.fullName || card.name || 'Profile';
+      document.getElementById('card-name').innerText = card.name || card.fullName || 'Profile';
+      document.getElementById('card-role').innerText = card.role || '';
+      document.getElementById('card-email').innerText = card.email || 'Not provided';
+      document.getElementById('card-phone').innerText = card.phone || 'Not provided';
+      document.getElementById('card-address').innerText = card.address || '—';
+      document.getElementById('card-id').innerText = card.id || id;
+
+      const socials = document.getElementById('card-socials'); socials.innerHTML = '';
+      const add = (href, label) => { if (!href) return; const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel='noopener'; a.innerText = label; socials.appendChild(a); };
+      add(card.portfolio, 'Portfolio');
+      add(card.instagram, 'Instagram');
+      add(card.github, 'GitHub');
+      add(card.linkedin, 'LinkedIn');
+    }
+
+    document.addEventListener('DOMContentLoaded', render);
+  </script>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mr Tamminana Bhogesh — Profile Card</title>
   <style>
     html,body{height:100%;margin:0;background:linear-gradient(180deg,#020317 0%,#06102b 100%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
