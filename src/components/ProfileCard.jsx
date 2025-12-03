@@ -44,7 +44,9 @@ const ProfileCard = ({ name, profession, role, social = {}, onClose }) => {
           await downloadAsPDF(false);
           break;
         case 'copy':
-          navigator.clipboard && navigator.clipboard.writeText(window.location.href);
+          // copy the dedicated card URL
+          const cardUrl = window.location.origin + '/card';
+          navigator.clipboard && navigator.clipboard.writeText(cardUrl);
           break;
         case 'whatsapp':
         case 'linkedin':
@@ -238,6 +240,10 @@ const ProfileCard = ({ name, profession, role, social = {}, onClose }) => {
 export default ProfileCard;
 
 // Helpers
+function getExportBaseName() {
+  // Fixed export base name per user request
+  return 'Mr_Tamminana_Bhogesh';
+}
 async function captureCard(preserveTransform = false, padding = 0) {
   const el = document.getElementById('profile-atm-card');
   if (!el) throw new Error('Card element not found');
@@ -288,8 +294,7 @@ function downloadCanvas(canvas, name) {
   const dataUrl = canvas.toDataURL('image/png');
   const link = document.createElement('a');
   link.href = dataUrl;
-  const safeName = (name || 'profile-card').toLowerCase().replace(/[^a-z0-9_-]/g, '-');
-  link.download = `${safeName}.png`;
+  link.download = `${getExportBaseName()}.png`;
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -299,7 +304,7 @@ async function shareCanvas(canvas, name) {
   return new Promise((resolve, reject) => {
     canvas.toBlob(async (blob) => {
       if (!blob) return reject(new Error('Failed to create blob'));
-      const file = new File([blob], `${(name || 'profile-card').toLowerCase().replace(/[^a-z0-9_-]/g, '-')}.png`, { type: 'image/png' });
+      const file = new File([blob], `${getExportBaseName()}.png`, { type: 'image/png' });
       try {
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({ files: [file], title: name || 'Profile card' });
@@ -405,7 +410,7 @@ async function downloadAsHTML() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `${(document.title || 'profile-card').toLowerCase().replace(/[^a-z0-9]+/g,'-')}.html`;
+  a.download = `${getExportBaseName()}.html`;
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -466,7 +471,7 @@ async function downloadAsPDF(preserveTransform = false) {
 
   const opt = {
     margin: 8,
-    filename: `${(document.title || 'profile-card').toLowerCase().replace(/[^a-z0-9]+/g,'-')}.pdf`,
+    filename: `${getExportBaseName()}.pdf`,
     image: { type: 'png', quality: 1 },
     html2canvas: { scale: 2, useCORS: true, logging: false },
     jsPDF: { unit: 'px', format: [clone.offsetWidth + 16, clone.offsetHeight + 16], orientation: 'portrait' }
@@ -508,13 +513,16 @@ async function downloadAsPDF(preserveTransform = false) {
 }
 
 function sharePage(platform) {
-  const url = encodeURIComponent(window.location.href);
+  // share the dedicated card URL so recipients land on the standalone card page
+  const cardId = getExportBaseName().toLowerCase().replace(/[^a-z0-9]+/g, '_');
+  const cardUrl = window.location.origin + '/card?id=' + encodeURIComponent(cardId);
+  const url = encodeURIComponent(cardUrl);
   const title = encodeURIComponent(document.title || 'Profile');
-  const text = encodeURIComponent(`Check out ${document.title} - ${window.location.href}`);
+  const text = encodeURIComponent(`Check out ${document.title} - ${cardUrl}`);
   let shareUrl = '';
   switch (platform) {
     case 'whatsapp':
-      shareUrl = `https://wa.me/?text=${text}`;
+      shareUrl = `https://wa.me/?text=${encodeURIComponent('Check this profile card: ' + cardUrl)}`;
       break;
     case 'linkedin':
       shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
@@ -523,13 +531,13 @@ function sharePage(platform) {
       shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
       break;
     case 'twitter':
-      shareUrl = `https://twitter.com/intent/tweet?text=${text}`;
+      shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent('Check this profile card: ' + cardUrl)}`;
       break;
     case 'telegram':
-      shareUrl = `https://t.me/share/url?url=${url}&text=${text}`;
+      shareUrl = `https://t.me/share/url?url=${url}&text=${encodeURIComponent('Check this profile card: ' + cardUrl)}`;
       break;
     default:
-      shareUrl = window.location.href;
+      shareUrl = cardUrl;
   }
   window.open(shareUrl, '_blank', 'noopener');
 }

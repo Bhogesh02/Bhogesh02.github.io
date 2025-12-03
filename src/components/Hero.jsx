@@ -98,12 +98,12 @@ const Hero = () => {
 
             <div className="flex items-center">
               <button
-                className="flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 px-3 sm:px-5 py-2 sm:py-3 text-center text-xs sm:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out"
+                className="flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-4 sm:px-6 py-3 sm:py-4 text-center text-xs sm:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out"
                 onClick={() => setShowCard((prev) => !prev)}
                 aria-label="Open profile card"
               >
                 <AiOutlineIdcard size={18} />
-                <span className="hidden sm:inline">Card</span>
+                <span>Card</span>
               </button>
 
             </div>
