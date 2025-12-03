@@ -1,9 +1,9 @@
 export const personalData = {
   name: "TAMMINANA BHOGESH",
   profile: "./Bhogesh02.webp",
-  designation: "MERN Stack Developer",
+  designation: "Full Stack Developer",
   description:
-    "I’m a results-driven MERN Stack Developer who loves building scalable, high-performance web applications with clean architecture and modern engineering standards. I work across MongoDB, Express.js, React, and Node.js to create efficient, user-focused solutions that feel smooth, fast, and purposeful. With strong experience in Next.js, TypeScript, and advanced state management, I stay aligned with the latest industry practices to deliver secure, stable, and visually refined products. I enjoy turning complex requirements into intuitive digital experiences that not only look great but also drive real business impact. Focused, detail-oriented, and always improving , I build applications that combine performance, usability, and long-term maintainability.",
+    "I’m a results-driven Full Stack Developer who loves building scalable, high-performance web applications with clean architecture and modern engineering standards. I work across MongoDB, Express.js, React, and Node.js to create efficient, user-focused solutions that feel smooth, fast, and purposeful. With strong experience in Next.js, TypeScript, and advanced state management, I stay aligned with the latest industry practices to deliver secure, stable, and visually refined products. I enjoy turning complex requirements into intuitive digital experiences that not only look great but also drive real business impact. Focused, detail-oriented, and always improving , I build applications that combine performance, usability, and long-term maintainability.",
   email: "tamminanabhogesh@gmail.com",
   phone: "+91 9704635156",
   address: "Hyderabad ",

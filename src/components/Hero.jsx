@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { AiOutlineIdcard } from "react-icons/ai";
 import { FaFacebook, FaTwitterSquare } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { SiLeetcode } from "react-icons/si";
 import { personalData } from "../utils/data/personal-data";
 import heroPic from "../Images/svg/hero.svg";
+import ProfileCard from "./ProfileCard";
+
 const Hero = () => {
+  const [showCard, setShowCard] = useState(false);
+
   return (
     <section className="relative flex flex-col items-center justify-between py-6 md:py-10 lg:py-16 w-full">
       <img
@@ -74,14 +79,14 @@ const Hero = () => {
               href="#contact"
               className="bg-gradient-to-r to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
             >
-              <button className="px-4 text-xs sm:text-sm md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full border-none text-center font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out flex items-center gap-2 hover:gap-3">
+              <button className="px-4 text-xs sm:text-sm md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full border-none text-center font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out flex items-center gap-2">
                 <span>Contact me</span>
                 <RiContactsFill size={18} />
               </button>
             </a>
 
             <a
-              className="flex items-center gap-2 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-4 sm:px-8 py-3 sm:py-4 text-center text-xs sm:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:text-white hover:no-underline"
+              className="flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-4 sm:px-6 py-3 sm:py-4 text-center text-xs sm:text-sm font-medium uppercase tracking-wider text-white no-underline"
               role="button"
               target="_blank"
               rel="noreferrer"
@@ -90,7 +95,38 @@ const Hero = () => {
               <span>Get Resume</span>
               <MdDownload size={18} />
             </a>
+
+            <div className="flex items-center">
+              <button
+                className="flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 to-pink-500 px-3 sm:px-5 py-2 sm:py-3 text-center text-xs sm:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out"
+                onClick={() => setShowCard((prev) => !prev)}
+                aria-label="Open profile card"
+              >
+                <AiOutlineIdcard size={18} />
+                <span className="hidden sm:inline">Card</span>
+              </button>
+
+            </div>
           </div>
+          {showCard && (
+            <ProfileCard
+              open={showCard}
+              onClose={() => setShowCard(false)}
+              name={personalData.fullName || personalData.name}
+              role={personalData.role || personalData.designation || personalData.profession}
+              social={{
+                ...(personalData.socials || {}),
+                instagram: personalData.instagram,
+                facebook: personalData.facebook,
+                twitter: personalData.twitter,
+                github: personalData.github,
+                linkedin: personalData.linkedIn,
+                email: personalData.email,
+                phone: personalData.phone || personalData.mobile,
+                address: personalData.location || personalData.address,
+              }}
+            />
+          )}
         </div>
 
 
@@ -177,18 +213,7 @@ const Hero = () => {
       <div className="ml-16">
         <span className="text-white">quickLearner:</span>
         <span className="mx-1 text-orange-400">true</span>
-        <span className="text-gray-400">,</span>
       </div>
-
-      <div className="ml-16">
-        <span className="text-white">problemSolver:</span>
-        <span className="mx-1 text-orange-400">true</span>
-      </div>
-
-      <div>
-        <span className="ml-8 text-gray-400">{"},"}</span>
-      </div>
-
       {/* Hireable Logic – meaningful & modern */}
       <div>
         <span className="ml-8 text-green-400">hireable:</span>
@@ -225,7 +250,7 @@ const Hero = () => {
       </div>
 
       <div>
-        <span className="ml-8 text-gray-400">{"},"}</span>
+        <span className="ml-8 text-gray-400"></span>
       </div>
 
       {/* End */}
