@@ -1,4 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
-Sitemap: https://bhogesh02.github.io/Mr_Bhogesh_Portfolio/sitemap.xml
+ # Sitemap for the site (GitHub Pages root)
+ Sitemap: https://bhogesh02.github.io/sitemap.xml
