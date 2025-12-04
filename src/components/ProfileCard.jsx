@@ -139,7 +139,7 @@ const ProfileCard = ({ name, profession, role, social = {}, onClose }) => {
             </div>
           </div>
 
-          <div className="text-white font-extrabold text-2xl sm:text-3xl md:text-4xl mt-2 text-center">Mr _ {name}</div>
+          <div className="text-white font-extrabold text-2xl sm:text-3xl md:text-4xl mt-2 text-center md:whitespace-nowrap tracking-tight leading-tight">Mr {name}</div>
           <div className="text-white text-sm sm:text-base mb-4 opacity-90 font-semibold text-center">{profession || role}</div>
 
           <div className="flex mb-2 items-center flex-wrap justify-center" style={{ gap: 16 }}>
