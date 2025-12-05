@@ -8,7 +8,7 @@ export default function TamminanaPage(){
   const pageUrl = `${site}/tamminana-bhogesh`
   const image = `${site}/Bhogesh02.webp`
   const name = 'Tamminana Bhogesh'
-  const description = "I'm a results-driven Full Stack Developer who loves building scalable, high-performance web applications with clean architecture and modern engineering practices."
+  const description = "I'm a full stack developer who loves turning ideas into fast, scalable web applications using clean architecture and modern engineering techniques."
 
   const personJsonLd = {
     "@context": "https://schema.org",
