@@ -11,7 +11,22 @@ import ProfileCard from "./ProfileCard";
 
 const Hero = () => {
   const [showCard, setShowCard] = useState(false);
-
+const skills = [
+  "React.js",
+  "Next.js",
+  "Node.js",
+  "Express.js",
+  "TypeScript",
+  "MongoDB",
+  "PostgreSQL",
+  "REST APIs",
+  "JWT Authentication",
+  "WebSockets (Socket.io)",
+  "Docker",
+  "AWS",
+  "CI/CD",
+  "API Optimization"
+];
   return (
     <section className="relative flex flex-col items-center justify-between py-6 md:py-10 lg:py-16 w-full">
       <img
@@ -182,17 +197,15 @@ const Hero = () => {
       </div>
 
       <div className="ml-16">
-        <span className="text-amber-300">'React.js'</span><span className="text-gray-400">, </span>
-        <span className="text-amber-300">'Next.js'</span><span className="text-gray-400">, </span>
-        <span className="text-amber-300">'Node.js'</span><span className="text-gray-400">, </span>
-        <span className="text-amber-300">'Express.js'</span><span className="text-gray-400">, </span>
-        <span className="text-amber-300">'TypeScript'</span><span className="text-gray-400">, </span>
-        <span className="text-amber-300">'MongoDB'</span><span className="text-gray-400">, </span>
-        <span className="text-amber-300">'Docker'</span><span className="text-gray-400">, </span>
-        <span className="text-amber-300">'CI/CD'</span><span className="text-gray-400">, </span>
-        <span className="text-amber-300">'Cloud Engineering'</span><span className="text-gray-400">, </span>
-        <span className="text-amber-300">'Performance Optimization'</span>
-      </div>
+  {skills.map((skill, index) => (
+    <span key={skill}>
+      <span className="text-amber-300">'{skill}'</span>
+      {index !== skills.length - 1 && (
+        <span className="text-gray-400">, </span>
+      )}
+    </span>
+  ))}
+</div>
 
       <div>
         <span className="ml-8 text-gray-400">{" ],"}</span>

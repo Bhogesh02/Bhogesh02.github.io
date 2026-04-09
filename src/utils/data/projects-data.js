@@ -3,58 +3,68 @@ import ayla from "../../Images/ayla.jpg";
 export const projectsData = [
   {
     id: 1,
-    name: "Echo-Link: Real-Time Chat Application",
+    name: "GraminSetu – Rural Service Platform",
     description:
-      "A secure real-time chat app built with MERN stack and Socket.io. Features include one-on-one messaging, media sharing, JWT authentication, and Cloudinary storage. Intuitive UI with React and Tailwind CSS.",
+      "Built a full-stack MERN application to provide digital services and real-time updates for rural communities. Implemented real-time notifications using Socket.io, designed scalable REST APIs, and integrated OpenWeatherMap API with caching to improve performance. Implemented JWT authentication and role-based access control.",
     tools: [
       "MongoDB",
       "Express.js",
       "React.js",
       "Node.js",
       "Socket.io",
-      "Cloudinary",
-      "Multer",
       "JWT",
-      "Redux",
+      "Tailwind CSS",
+      "REST APIs",
+      "OpenWeatherMap API",
+    ],
+    role: "Full-Stack Developer",
+    code:"https://graminsetu.in/",
+    demo:"https://github.com/Bhogesh02"
+  },
+
+  {
+    id: 2,
+    name: "AI Mock Interview Platform",
+    description:
+      "Developed an AI-powered interview platform that generates dynamic questions and provides real-time feedback. Built scalable backend APIs to handle AI responses and designed a responsive UI for smooth user experience.",
+    tools: [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "Gemini AI",
+      "REST APIs",
       "Tailwind CSS",
     ],
     role: "Full-Stack Developer",
-   
+    code:"https://mockup-ai.netlify.app/",
+    demo:"https://github.com/Bhogesh02"
+
+    
   },
-  {
-    id: 2,
-    name: "Quick Kare: Online Doctor Consultation",
-    description:
-      "Online doctor consultation platform with React and Firebase. Includes admin, doctor, and patient portals, secure authentication, real-time video calls, and responsive UI.",
-    tools: ["React.js", "Firebase", "Firestore", "WebRTC", "Tailwind CSS"],
-    role: "Frontend Developer",
-   
-  },
+
   {
     id: 3,
-    name: "MockUp: AI-Powered Interview System",
+    name: "Real-Time Chat Application",
     description:
-      "AI-powered mock interview platform using Gemini AI. Automated interviews, real-time feedback, secure login, and video-based sessions. Responsive UI with React and Tailwind CSS.",
+      "Built a real-time messaging system supporting one-to-one and group chats using Socket.io. Implemented secure authentication using JWT and designed efficient database schema for message storage and retrieval.",
     tools: [
+      "MongoDB",
+      "Express.js",
       "React.js",
-    "Firebase",
-    "Firestore",
-    "Gemini AI",
-    "WebRTC",
-    "Tailwind CSS",
+      "Node.js",
+      "Socket.io",
+      "JWT",
     ],
-    
-    role: "Frontend Developer",
-    
+    role: "Full-Stack Developer",
   },
+
   {
     id: 4,
-    name: "Newsroom Management",
+    name: "TeleHealth Platform",
     description:
-      "Newspaper management dashboard built with NextJS, Material UI, Redux, and Calendar. Managed state with Redux and forms with React-hook-form and Sun Editor.",
-    tools: ["NextJS", "Material UI", "Redux", "Sun Editor", "Calendar"],
-   
-    image: ayla,
-    role: "Full Stack Developer",
+      "Developed a telehealth platform for online doctor consultations. Implemented real-time video communication using WebRTC and built role-based dashboards for admin, doctors, and patients with responsive UI.",
+    tools: ["React.js", "Firebase", "WebRTC", "Tailwind CSS"],
+    role: "Frontend Developer",
   },
 ];

@@ -1,21 +1,26 @@
 export const experiences = [
   {
     id: 1,
-    title: 'Fullstack Developer',
-    company: "Dhi Aspire AI",
-    duration: "(nov 2025 - Present)"
+    title: "Full-Stack Software Engineer",
+    company: "DhiAspire AI",
+    duration: "Oct 2025 – Present",
   },
   {
     id: 2,
-    title: 'Fullstack Developer',
-    company: "Newowl AI",
-    duration: "(July 2024 - oct 2025)"
+    title: "Full-Stack Software Engineer",
+    company: "NewOwl AI",
+    duration: "Jan 2025 – Oct 2025",
   },
   {
     id: 3,
-    title: "Junior Frontend Developer",
-    company: "Actro tech pvt.ltd",
-    duration: "(September 2023 - May 2024)"
+    title: "Frontend Developer",
+    company: "NewOwl AI",
+    duration: "Jul 2024 – Dec 2024",
   },
-
-]
+  {
+    id: 4,
+    title: "Frontend Developer",
+    company: "Actro Tech Pvt. Ltd.",
+    duration: "Sep 2023 – May 2024",
+  },
+];
